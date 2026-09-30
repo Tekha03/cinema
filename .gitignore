@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+
+/bin/
+/cinema
+*.log
+*.zip
+
+.DS_Store
+.idea/
+.vscode/
