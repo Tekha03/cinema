@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"time"
 
-	"example.com/cinema/internal/movie"
-	"example.com/cinema/web"
+	"github.com/Tekha03/cinema/internal/movie"
+	"github.com/Tekha03/cinema/web"
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"

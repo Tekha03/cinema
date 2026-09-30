@@ -42,7 +42,7 @@ func Load() (Config, error) {
 		return Config{}, errors.New("DB_MAX_CONNS must be a positive 32-bit integer")
 	}
 
-	cfg.maxConns = int32(maxConns)
+	cfg.DBMaxConns = int32(maxConns)
 
 	if err := cfg.LogLevel.UnmarshalText([]byte(env("LOG_LEVEL", "INFO"))); err != nil {
 		return Config{}, fmt.Errorf("invalid LOG_LEVEL: %w", err)

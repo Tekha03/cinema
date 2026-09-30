@@ -1,3 +1,13 @@
+# Сервер и миграции используют один образ и настройки.
+x-cinema: &cinema
+  image: ${APP_IMAGE:-cinema:0.1.0}
+  environment:
+    PORT: ${PORT:-8080}
+    LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    DB_MAX_CONNS: ${DB_MAX_CONNS:-5}
+    DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in .env}
+  read_only: true
+
 services:
   db:
     image: postgres:17.11-bookworm
@@ -22,15 +32,19 @@ services:
     restart: unless-stopped
     stop_grace_period: 30s
 
-  app:
-    image: ${APP_IMAGE:-cinema:0.1.0}
-    build: .
+  migrate:
+    <<: *cinema
+    # Образ собирается сервисом app перед запуском контейнеров.
+    pull_policy: never
+    command: ["migrate"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
 
-    environment:
-      PORT: ${PORT:-8080}
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
-      DB_MAX_CONNS: ${DB_MAX_CONNS:-5}
-      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in .env}
+  app:
+    <<: *cinema
+    build: .
 
     ports:
       - "127.0.0.1:${PORT:-8080}:${PORT:-8080}"
@@ -38,8 +52,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
-    read_only: true
     restart: unless-stopped
     stop_grace_period: 15s
 

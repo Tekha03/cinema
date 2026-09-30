@@ -10,7 +10,7 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-// go:embed *.sql
+//go:embed *.sql
 var files embed.FS
 
 func Up(ctx context.Context, pool *pgxpool.Pool) error {
@@ -43,7 +43,7 @@ func Up(ctx context.Context, pool *pgxpool.Pool) error {
 	_, err = tx.Exec(ctx, `
 		CREATE TABLE IF NOT EXISTS schema_migrations (
 			version TEXT PRIMARY KEY,
-			applied_at TIMESTAMPZ NOT NULL DEFAULT NOW()
+			applied_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 		)
 	`)
 	if err != nil {
@@ -61,7 +61,7 @@ func Up(ctx context.Context, pool *pgxpool.Pool) error {
 			SELECT EXISTS(
 				SELECT 1
 				FROM schema_migrations
-				WHERER version = $1
+				WHERE version = $1
 			)
 		`, name).Scan(&exists)
 		if err != nil {

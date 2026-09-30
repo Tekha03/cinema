@@ -1,9 +1,32 @@
 package movie
 
 import (
+	"encoding/json"
 	"strings"
 	"testing"
 )
+
+func TestMovieJSON(t *testing.T) {
+	const body = `{"id":1,"title":"Фильм","description":"Описание","release_year":2024,"video_url":"https://example.org/movie.mp4"}`
+	var m Movie
+	if err := json.Unmarshal([]byte(body), &m); err != nil {
+		t.Fatalf("decode movie: %v", err)
+	}
+	data, err := json.Marshal(m)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var fields map[string]any
+	if err := json.Unmarshal(data, &fields); err != nil {
+		t.Fatal(err)
+	}
+	if fields["release_year"] != float64(2024) {
+		t.Fatalf("release_year must be a JSON number: %s", data)
+	}
+	if fields["video_url"] != "https://example.org/movie.mp4" {
+		t.Fatalf("video_url must preserve the playback URL: %s", data)
+	}
+}
 
 func TestInputValidate(t *testing.T) {
 	tests := []struct {

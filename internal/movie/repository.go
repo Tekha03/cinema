@@ -88,7 +88,7 @@ func (r *Repository) Create(ctx context.Context, in Input) (Movie, error) {
 		in.Title,
 		in.Description,
 		in.ReleaseYear,
-		in.VideoURL
+		in.VideoURL,
 	))
 }
 

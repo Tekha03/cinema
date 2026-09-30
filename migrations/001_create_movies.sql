@@ -13,7 +13,7 @@ CREATE TABLE movies (
     video_url VARCHAR(2048) NOT NULL
         CHECK (video_url ~ '^https?://'),
     
-    created_at TIMESTAMPZ NOT NULL DEFAULT NOW(),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
-    updated_at TIMESTAMPZ NOT NULL DEFAULT NOW()
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

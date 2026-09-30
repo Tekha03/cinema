@@ -12,8 +12,8 @@ type Movie struct {
 	ID          int64     `json:"id"`
 	Title       string    `json:"title"`
 	Description string    `json:"description"`
-	ReleaseYear string    `json:"release_year"`
-	VideoURL    string    `json:"json_url"`
+	ReleaseYear int       `json:"release_year"`
+	VideoURL    string    `json:"video_url"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
