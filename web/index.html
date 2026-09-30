@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cinema — онлайн-кинотеатр</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">Учебный онлайн-кинотеатр</p>
+      <h1>Cinema</h1>
+      <p>Собирай каталог и смотри видео в браузере.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+
+    <section id="player-panel" class="panel" hidden>
+      <div class="section-heading">
+        <h2 id="player-title">Просмотр</h2>
+        <button id="close-player" type="button" class="secondary">
+          Закрыть
+        </button>
+      </div>
+
+      <video id="player" controls preload="none">
+        Браузер не поддерживает воспроизведение видео.
+      </video>
+
+      <p class="hint">
+        Для начала просмотра нажми кнопку воспроизведения.
+      </p>
+    </section>
+
+    <div class="layout">
+      <section class="panel">
+        <h2 id="form-title">Добавить фильм</h2>
+
+        <form id="movie-form">
+          <fieldset id="form-fields">
+            <label for="title">Название</label>
+            <input id="title" type="text" maxlength="200" required>
+
+            <label for="description">Описание</label>
+            <textarea
+              id="description"
+              rows="5"
+              maxlength="5000"
+            ></textarea>
+
+            <label for="release-year">Год выпуска</label>
+            <input
+              id="release-year"
+              type="number"
+              min="1888"
+              max="2100"
+              required
+            >
+
+            <label for="video-url">Прямая ссылка на видео</label>
+            <input
+              id="video-url"
+              type="url"
+              maxlength="2048"
+              placeholder="https://example.org/movie.mp4"
+              required
+            >
+
+            <p class="hint">
+              Нужен URL видеофайла, например MP4, а не страницы с видео.
+            </p>
+
+            <div class="actions">
+              <button type="submit">Сохранить</button>
+              <button
+                id="cancel-edit"
+                type="button"
+                class="secondary"
+                hidden
+              >
+                Отмена
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <h2>Каталог</h2>
+          <button id="refresh" type="button" class="secondary">
+            Обновить
+          </button>
+        </div>
+
+        <div id="movie-list" class="movie-list"></div>
+
+        <nav class="pagination" aria-label="Страницы каталога">
+          <button id="previous-page" type="button" class="secondary">
+            Назад
+          </button>
+          <span id="page-label">Страница 1</span>
+          <button id="next-page" type="button" class="secondary">
+            Вперёд
+          </button>
+        </nav>
+      </section>
+    </div>
+  </main>
+
+  <template id="movie-template">
+    <article class="movie-card">
+      <h3 class="movie-title"></h3>
+      <p class="movie-year"></p>
+      <p class="movie-description"></p>
+
+      <div class="actions">
+        <button type="button" data-action="watch">Смотреть</button>
+        <button type="button" data-action="edit" class="secondary">
+          Изменить
+        </button>
+        <button type="button" data-action="delete" class="danger">
+          Удалить
+        </button>
+      </div>
+    </article>
+  </template>
+</body>
+</html>

@@ -10,22 +10,22 @@ import (
 )
 
 const (
-	minConfigurePort 	= 1
-	maxTCPPort		 	= 65535
-	defaultDBMaxConns 	= "5"
+	minConfigurePort  = 1
+	maxTCPPort        = 65535
+	defaultDBMaxConns = "5"
 )
 
 type Config struct {
-	Port		string
-	DatabaseURL	string
-	DBMaxConns	int32
-	LogLevel	slog.Level
+	Port        string
+	DatabaseURL string
+	DBMaxConns  int32
+	LogLevel    slog.Level
 }
 
 func Load() (Config, error) {
 	cfg := Config{
-		Port:			env("PORT", "8080"),
-		DatabaseURL:	strings.TrimSpace(os.Getenv("DATABASE_URL")),
+		Port:        env("PORT", "8080"),
+		DatabaseURL: strings.TrimSpace(os.Getenv("DATABASE_URL")),
 	}
 
 	if cfg.DatabaseURL == "" {

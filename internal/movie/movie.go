@@ -1,6 +1,6 @@
 package movie
 
-improt (
+import (
 	"errors"
 	"net/url"
 	"strings"
@@ -9,20 +9,20 @@ improt (
 )
 
 type Movie struct {
-	ID			int64		`json:"id"`
-	Title 		string		`json:"title"`
-	Description string		`json:"description"`
-	ReleaseYear	string		`json:"release_year"`
-	VideoURL	string		`json:"json_url"`
-	CreatedAt	time.Time	`json:"created_at"`
-	UpdatedAt	time.Time	`json:"updated_at"`
+	ID          int64     `json:"id"`
+	Title       string    `json:"title"`
+	Description string    `json:"description"`
+	ReleaseYear string    `json:"release_year"`
+	VideoURL    string    `json:"json_url"`
+	CreatedAt   time.Time `json:"created_at"`
+	UpdatedAt   time.Time `json:"updated_at"`
 }
 
 type Input struct {
-	Title		string	`json:"title"`
-	Description	string	`json:"description"`
-	ReleaseYear	int		`json:"release_year"`
-	VideoURL	string	`json:"video_url"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	ReleaseYear int    `json:"release_year"`
+	VideoURL    string `json:"video_url"`
 }
 
 func (in *Input) Validate() error {
@@ -32,7 +32,7 @@ func (in *Input) Validate() error {
 
 	if strings.ContainsRune(
 		in.Title+in.Description+in.VideoURL,
-		"\x00",
+		'\x00',
 	) {
 		return errors.New("the zero character is forbidden in strings")
 	}

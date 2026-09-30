@@ -1,0 +1,197 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+  background: #101522;
+  color: #edf1fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  padding: 36px 0 24px;
+  border-bottom: 1px solid #303b51;
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: 42px;
+}
+
+h2,
+h3 {
+  margin-top: 0;
+}
+
+.eyebrow {
+  color: #69dfc2;
+  font-size: 14px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+.panel,
+.movie-card {
+  padding: 20px;
+  background: #1b2334;
+  border: 1px solid #303b51;
+  border-radius: 12px;
+}
+
+#player-panel {
+  margin-bottom: 24px;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+label {
+  display: block;
+  margin: 16px 0 6px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #526078;
+  border-radius: 6px;
+  background: #101522;
+  color: inherit;
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 9px 13px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: #69dfc2;
+  color: #10251f;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #303b51;
+  color: #edf1fa;
+}
+
+button.danger {
+  background: #512a35;
+  color: #ffd7df;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #69dfc2;
+  outline-offset: 3px;
+}
+
+.actions,
+.section-heading,
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.actions {
+  margin-top: 18px;
+}
+
+.section-heading {
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-heading h2 {
+  margin: 0;
+}
+
+.movie-list {
+  display: grid;
+  gap: 16px;
+}
+
+.movie-title,
+.movie-description {
+  overflow-wrap: anywhere;
+}
+
+.movie-description {
+  white-space: pre-wrap;
+}
+
+.movie-year,
+.hint {
+  color: #b5c1d6;
+}
+
+.hint {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.message {
+  min-height: 24px;
+  color: #f8d889;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+video {
+  display: block;
+  width: 100%;
+  max-height: 560px;
+  background: #000;
+  border-radius: 8px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+}
